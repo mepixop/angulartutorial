@@ -1,0 +1,8 @@
+<!-- event has to be catched by the one sending it -->
+<app-messenger (messenger)="messages.push($event)"></app-messenger>
+
+<div>
+    <p *ngFor="let message of messages">
+        {{message}}
+    </p>
+</div>
