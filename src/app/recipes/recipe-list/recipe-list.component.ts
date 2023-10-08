@@ -17,5 +17,7 @@ export class RecipeListComponent {
   onRecipeSelected(recipe: Recipe) {
     this.recipeWasSelected.emit(recipe)
   }
-
+  ngOnInit() {
+    this.recipeWasSelected.emit(this.recipes[0])
+  }
 }

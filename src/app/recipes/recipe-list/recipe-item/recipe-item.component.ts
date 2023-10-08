@@ -13,4 +13,5 @@ export class RecipeItemComponent {
   onSelected() {
     this.recipeSelected.emit()
   }
+
 }
