@@ -7,23 +7,23 @@ import { __spreadArray } from "tslib";
 export class ShoppinglistService {
     ingredientsChanged = new EventEmitter<Ingredient[]>()
 
-    private ingrediets: Ingredient[] = [
+    private ingredients: Ingredient[] = [
         new Ingredient('Apple', 5),
         new Ingredient('Banana', 10)
     ]
 
     getIngredients() {
-        return this.ingrediets.slice()
+        return this.ingredients.slice()
     }
 
     addIngredient(ingredient: Ingredient) {
-        this.ingrediets.push(ingredient)
-        this.ingredientsChanged.emit(this.ingrediets.slice())
+        this.ingredients.push(ingredient)
+        this.ingredientsChanged.emit(this.ingredients.slice())
     }
 
     addIngredients(ingredients: Ingredient[]) {
-        this.ingrediets.push(...ingredients)
-        this.ingredientsChanged.emit(this.ingrediets.slice())
+        this.ingredients.push(...ingredients)
+        this.ingredientsChanged.emit(this.ingredients.slice())
     }
 
 }
