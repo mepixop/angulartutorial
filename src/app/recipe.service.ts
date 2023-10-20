@@ -6,35 +6,45 @@ import { ShoppinglistService } from "./shoppinglist.service";
 @Injectable({ providedIn: 'root' })
 export class RecipeService {
 
-    recipeSelected = new EventEmitter<Recipe>()
-    private recipes: Recipe[] = [
-        new Recipe(
-            'Testfood',
-            'Easy to make test',
-            'https://img.freepik.com/premium-vector/job-exam-test-vector-illustration_138676-243.jpg',
-            [
-                new Ingredient('apple', 2),
-                new Ingredient('apple', 1),
-                new Ingredient('pineapple', 2)
-            ]),
-        new Recipe(
-            'Testfood1',
-            'Easy to make test',
-            'https://img.freepik.com/premium-vector/job-exam-test-vector-illustration_138676-243.jpg',
-            [
-                new Ingredient('banana', 2)
-            ])
-    ]
+  recipeSelected = new EventEmitter<Recipe>()
+  private recipes: Recipe[] = [
+    new Recipe(
+      'Testfood',
+      'Easy to make test',
+      'https://img.freepik.com/premium-vector/job-exam-test-vector-illustration_138676-243.jpg',
+      [
+        new Ingredient('apple', 2),
+        new Ingredient('apple', 1),
+        new Ingredient('pineapple', 2)
+      ],
+      1),
+    new Recipe(
+      'Testfood1',
+      'Easy to make test',
+      'https://img.freepik.com/premium-vector/job-exam-test-vector-illustration_138676-243.jpg',
+      [
+        new Ingredient('banana', 2)
+      ],
+      2)
+  ]
 
-    constructor(private shoppinglistService: ShoppinglistService) { }
+  constructor(private shoppinglistService: ShoppinglistService) { }
 
-    getRecipes() {
-        return this.recipes.slice(); //only get copy
-    }
+  getRecipes() {
+    return this.recipes.slice(); //only get copy
+  }
 
-    addIngredientsToShoppingList(ingredients: Ingredient[]) {
-        this.shoppinglistService.addIngredients(ingredients)
-    }
+  getRecipeById(id: number): Recipe {
+    return this.recipes.find(
+      (recipe) => {
+        return recipe.id === id;
+      }
+    );
+  }
+
+  addIngredientsToShoppingList(ingredients: Ingredient[]) {
+    this.shoppinglistService.addIngredients(ingredients)
+  }
 
 
 }
