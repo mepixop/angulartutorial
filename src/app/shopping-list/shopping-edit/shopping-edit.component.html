@@ -1,6 +1,6 @@
 <div class="row">
     <div class="col-xs-12">
-        <form (ngSubmit)="addItem(f)" #f="ngForm">
+        <form (ngSubmit)="upsertItem(f)" #f="ngForm">
             <div class="row">
                 <div class="col-sm-5 form-group">
                     <label for="name">Name</label>
@@ -11,7 +11,8 @@
                     #nameInput
                     name="name"
                     ngModel
-                    required>
+                    required
+                    [readOnly]='editMode'>
                 </div>
                 <div class="col-sm-2 form-group">
                     <label for="amount">Amount</label>
@@ -32,14 +33,14 @@
                       class="btn btn-success" 
                       type="submit" 
                       [disabled]="!f.valid">
-                      Add</button>
+                      {{ editMode?'Update':'Add' }}</button>
                     <button 
                       class="btn btn-danger" 
                       type="button">
                       delete</button>
                     <button 
                       class="btn btn-primary" 
-                      type="button">
+                      type="button" (click)="clearForm(f)">
                       Clear</button>
                 </div>
             </div>

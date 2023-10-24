@@ -1,3 +1,4 @@
+import { NgFor } from '@angular/common';
 import { Component, OnDestroy, OnInit, ViewChild } from '@angular/core';
 import { NgForm } from '@angular/forms';
 import { Subscription } from 'rxjs';
@@ -14,8 +15,8 @@ export class ShoppingEditComponent implements OnInit, OnDestroy {
 
   subscription: Subscription
   editMode: boolean = false
-  editedItemIndex: number
   editedItem: Ingredient
+  editedItemIndex: number
 
   constructor(private shoppinglistService: ShoppinglistService) { }
 
@@ -28,16 +29,27 @@ export class ShoppingEditComponent implements OnInit, OnDestroy {
           this.editedItem = this.shoppinglistService.getIngredientByIndex(index)
           this.shoppinglistForm.setValue({
             name: this.editedItem.name,
-            amount: this.editedItem.amount
+            amount: this.editedItem.amount,
           })
         }
       )
   }
 
-  addItem(form: NgForm) {
+  upsertItem(form: NgForm) {
     const value = form.value
     const newIngredient = new Ingredient(value.name, value.amount)
-    this.shoppinglistService.addIngredient(newIngredient)
+    if (this.editMode) {
+      this.shoppinglistService.updateIngredient(this.editedItemIndex, newIngredient)
+    }
+    else {
+      this.shoppinglistService.addIngredient(newIngredient);
+    }
+    this.clearForm(form)
+  }
+
+  clearForm(form: NgForm) {
+    form.reset()
+    this.editMode = false
   }
 
   ngOnDestroy(): void {
