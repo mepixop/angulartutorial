@@ -15,4 +15,7 @@ export class ShoppingListComponent {
   ngOnInit() {
     this.ingredients = this.shoppinglistService.getIngredients()
   }
+  editItem(index: number) {
+    this.shoppinglistService.startedEditing.next(index)
+  }
 }
