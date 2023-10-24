@@ -3,6 +3,8 @@ import { OnInit } from '@angular/core';
 import { ActivatedRoute, Params, Router } from '@angular/router';
 import { RecipeService } from 'src/app/recipe.service';
 import { Recipe } from '../recipes.model';
+import { FormControl, FormGroup } from '@angular/forms';
+import { __values } from 'tslib';
 
 @Component({
   selector: 'app-recipe-edit',
@@ -14,6 +16,8 @@ export class RecipeEditComponent implements OnInit {
   recipe: Recipe
   editMode = false
   createMode = false
+  recipeEditForm: FormGroup
+  newRecipe: Recipe
 
   constructor(private route: ActivatedRoute, private router: Router, private recipeService: RecipeService) { }
 
@@ -25,15 +29,24 @@ export class RecipeEditComponent implements OnInit {
           this.editMode = params['id'] != null
 
           this.createMode = params['id'] == null
-          // if (this.editMode == true) {
-          //   this.recipe = this.recipeService.getRecipeById(+params['id']);
-          //   if (this.recipe == undefined) {
-          //     this.recipe = new Recipe('', '', '', [], 0)
-          //     this.router.navigateByUrl('/recipes/invalid-id');
-          //   }
-          // }
-          console.log(this.editMode)
-          console.log(this.createMode)
         })
+
+    this.recipeEditForm = new FormGroup({
+      'name': new FormControl(null),
+      'imagePath': new FormControl(null),
+      'description': new FormControl(null),
+      'ingredientName': new FormControl(null),
+      'ingredientAmout': new FormControl(null)
+    })
   }
+
+
+
+  submitForm() {
+    //this.recipeService.addRecipe(this.newRecipe)
+    console.log(this.recipeEditForm)
+  }
+
+
+
 }
