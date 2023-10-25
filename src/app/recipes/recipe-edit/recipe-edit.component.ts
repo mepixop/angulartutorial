@@ -16,6 +16,7 @@ export class RecipeEditComponent implements OnInit {
   recipe: Recipe
   editMode = false
   createMode = false
+  imagePath: string;
   recipeEditForm: FormGroup
   constructor(private route: ActivatedRoute, private router: Router, private recipeService: RecipeService) { }
 
@@ -26,7 +27,12 @@ export class RecipeEditComponent implements OnInit {
           this.id = +params['id']
           this.editMode = params['id'] != null
           this.initForm()
-        })
+        });
+    this.recipeEditForm.valueChanges.subscribe((value) => {
+      if (this.recipeEditForm.get('imagePath').value) {
+        this.imagePath = this.recipeEditForm.get('imagePath').value;
+      }
+    })
   }
 
   private initForm() {
@@ -39,7 +45,9 @@ export class RecipeEditComponent implements OnInit {
       const recipe = this.recipeService.getRecipeById(this.id)
       recipeName = recipe.name
       recipeImgPath = recipe.imagePath
+      this.imagePath = recipeImgPath;
       recipeDescription = recipe.description
+      this.recipe = recipe
 
       if (recipe['ingredients']) {
         for (let ingredient of recipe.ingredients) {
@@ -68,7 +76,7 @@ export class RecipeEditComponent implements OnInit {
   }
 
   addIngredient() {
-    (<FormArray>this.recipeEditForm.get('ingredients')).push(
+    (<FormArray>this.recipeEditForm.get('ingredients')).insert(0,
       new FormGroup({
         'name': new FormControl(),
         'amount': new FormControl()

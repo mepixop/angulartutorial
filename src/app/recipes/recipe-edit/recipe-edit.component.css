@@ -1,0 +1,9 @@
+.ingredient-line > .col-xs-8 {
+  padding-left: 7px;
+  padding-right: 3px;
+}
+
+.ingredient-line > .col-xs-2 {
+  padding-left: 3px;
+  padding-right: 3px;
+}
