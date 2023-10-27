@@ -17,7 +17,7 @@ export class RecipeListComponent {
     private route: ActivatedRoute) { }
 
   ngOnInit() {
-    this.recipes = this.recipeService.getRecipes()
+    this.recipes = this.recipeService.getRecipes();
   }
 
   onNewRecipe() {
