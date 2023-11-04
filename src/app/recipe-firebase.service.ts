@@ -9,8 +9,9 @@ export class recipeFirebaseService {
   constructor(private httpClient: HttpClient, private recipeService: RecipeService) { }
   firebaseRoot: string = "https://angular-course-project-39546-default-rtdb.europe-west1.firebasedatabase.app/";
 
-  putRecipes(recipes: Recipe[]) {
+  putRecipes() {
     const url: string = this.firebaseRoot + "recipes.json";
+    const recipes = this.recipeService.getRecipes();
     this.httpClient.put(url, recipes).subscribe();
   }
 

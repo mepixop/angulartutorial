@@ -12,4 +12,8 @@ export class HeaderComponent {
   loadRecipes() {
     this.recipeFirebaseService.getRecipes();
   }
+
+  saveRecipes() {
+    this.recipeFirebaseService.putRecipes();
+  }
 }
