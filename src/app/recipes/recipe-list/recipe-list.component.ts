@@ -18,6 +18,10 @@ export class RecipeListComponent {
 
   ngOnInit() {
     this.recipes = this.recipeService.getRecipes();
+    this.recipeService.recipesChanged.subscribe(recipes => {
+      this.recipes = recipes;
+      console.log('something happened');
+    });
   }
 
   onNewRecipe() {

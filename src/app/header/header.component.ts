@@ -1,4 +1,6 @@
 import { Component } from '@angular/core';
+import { RecipeService } from '../recipe.service';
+import { recipeFirebaseService } from '../recipe-firebase.service';
 
 @Component({
   selector: 'app-header',
@@ -6,4 +8,8 @@ import { Component } from '@angular/core';
   styleUrls: ['./header.component.css']
 })
 export class HeaderComponent {
+  constructor(private recipeFirebaseService: recipeFirebaseService) { }
+  loadRecipes() {
+    this.recipeFirebaseService.getRecipes();
+  }
 }
