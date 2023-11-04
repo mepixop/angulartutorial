@@ -16,6 +16,7 @@ import { AlertInvalidRecipeComponent } from './recipes/alert-invalid-recipe/aler
 import { RecipeStartpageComponent } from './recipes/recipe-startpage/recipe-startpage.component';
 import { RecipeEditComponent } from './recipes/recipe-edit/recipe-edit.component';
 import { HttpClientModule } from '@angular/common/http';
+import { recipeResolver } from './recipe-resolver.service';
 
 @NgModule({
   declarations: [
@@ -39,7 +40,7 @@ import { HttpClientModule } from '@angular/common/http';
     ReactiveFormsModule,
     HttpClientModule
   ],
-  providers: [],
+  providers: [{ provide: 'recipeResolver', useFactory: () => { return recipeResolver; } }],
   bootstrap: [AppComponent]
 })
 export class AppModule { }

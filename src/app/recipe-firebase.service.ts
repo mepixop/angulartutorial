@@ -17,14 +17,15 @@ export class recipeFirebaseService {
 
   getRecipes() {
     const url: string = this.firebaseRoot + "recipes.json";
-    this.httpClient.get<{ [i: number]: Recipe }>(url).pipe(map(data => {
+    return this.httpClient.get<{ [i: number]: Recipe }>(url).pipe(map(data => {
       const recipes: Recipe[] = []
       for (let i of Object.keys(data)) {
         recipes.push(data[i]);
         this.recipeService.addRecipe(data[i]);
       }
       this.recipeService.recipesChanged.next(recipes);
-    })).subscribe();
+      return recipes;
+    }));
   }
 
 }
