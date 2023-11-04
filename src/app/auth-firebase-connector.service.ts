@@ -13,8 +13,10 @@ export interface SignupResponse {
 
 @Injectable({ providedIn: "root" })
 export class AuthFirebaseConnector {
+
   private signUpUrl: string = "https://identitytoolkit.googleapis.com/v1/accounts:signUp";
   private api_key: string = " AIzaSyDWKqCvV2NWHCYdtX9dhFoGxW-aBFgL2QU ";
+  isLoggedIn: boolean = false
 
   constructor(private httpClient: HttpClient) { }
 
@@ -33,4 +35,13 @@ export class AuthFirebaseConnector {
 
     return this.httpClient.post<SignupResponse>(this.signUpUrl, requestBody, headers);
   }
+
+  login() {
+    this.isLoggedIn = true
+  }
+
+  logOut() {
+    this.isLoggedIn = false
+  }
+
 }

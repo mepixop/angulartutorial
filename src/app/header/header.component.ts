@@ -9,10 +9,10 @@ import { recipeFirebaseService } from '../recipe-firebase.service';
 })
 export class HeaderComponent {
   constructor(private recipeFirebaseService: recipeFirebaseService) { }
+
   loadRecipes() {
     this.recipeFirebaseService.getRecipes().subscribe();
   }
-
   saveRecipes() {
     this.recipeFirebaseService.putRecipes();
   }
