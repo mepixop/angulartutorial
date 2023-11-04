@@ -17,6 +17,7 @@ import { RecipeStartpageComponent } from './recipes/recipe-startpage/recipe-star
 import { RecipeEditComponent } from './recipes/recipe-edit/recipe-edit.component';
 import { HttpClientModule } from '@angular/common/http';
 import { recipeResolver } from './recipe-resolver.service';
+import { AuthenticationComponent } from './authentication/authentication.component';
 
 @NgModule({
   declarations: [
@@ -31,7 +32,8 @@ import { recipeResolver } from './recipe-resolver.service';
     DropdownDirective,
     AlertInvalidRecipeComponent,
     RecipeStartpageComponent,
-    RecipeEditComponent
+    RecipeEditComponent,
+    AuthenticationComponent
   ],
   imports: [
     BrowserModule,
