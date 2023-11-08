@@ -1,9 +1,22 @@
-<p>authentication works!</p>
-<form>
-  <label for="email">E-mail</label>
-  <input type="email" id="email">
 
-  <label for="password">Password</label>
-  <input type="password" id="password">
-</form>
-<button type="btn btn-primary">Login/Sign Up</button>
+<div class="row">
+  <div class="col-xs-8 col-xs-offset-2 col-md-6 col-md-offset-3 col-xl-4 col-xl-offset-4" >
+    <div class="alert alert-danger" *ngIf="errorMsg">
+      <p>{{errorMsg}}</p>
+    </div>
+    <form (ngSubmit)="submit()" [formGroup]="form">
+      <div class="form-group">
+        <label for="email">E-mail</label>
+        <input type="email" class="form-control" id="email" formControlName="email">
+      </div>
+      <div class="form-group">
+        <label for="password">Password</label>
+        <input type="password" class='form-control' id="password" formControlName="password">
+      </div>
+      <button type="submit" class="btn btn-primary" [disabled]="!form.valid">{{isLogin? 'login' : 'signup'}}</button>
+      <button type="button" (click)="switchMode()" class="btn btn-secondary">switch to {{isLogin? 'Signup' : 'Login'}}</button>
+    </form>
+  </div>
+</div>
+
+

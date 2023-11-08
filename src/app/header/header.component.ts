@@ -1,14 +1,24 @@
-import { Component } from '@angular/core';
+import { Component, OnInit } from '@angular/core';
 import { RecipeService } from '../recipe.service';
 import { recipeFirebaseService } from '../recipe-firebase.service';
+import { User } from '../authentication/user.model';
+import { AuthService } from '../auth-firebase-connector.service';
 
 @Component({
   selector: 'app-header',
   templateUrl: './header.component.html',
   styleUrls: ['./header.component.css']
 })
-export class HeaderComponent {
-  constructor(private recipeFirebaseService: recipeFirebaseService) { }
+export class HeaderComponent implements OnInit {
+  user: User = null
+  constructor(private recipeFirebaseService: recipeFirebaseService, private authService: AuthService) { }
+
+  ngOnInit(): void {
+    this.authService.user.subscribe(user => {
+      this.user = user
+    })
+  }
+
 
   loadRecipes() {
     this.recipeFirebaseService.getRecipes().subscribe();

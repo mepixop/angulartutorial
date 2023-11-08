@@ -20,7 +20,6 @@ export class RecipeListComponent {
     this.recipes = this.recipeService.getRecipes();
     this.recipeService.recipesChanged.subscribe(recipes => {
       this.recipes = recipes;
-      console.log('something happened');
     });
   }
 
