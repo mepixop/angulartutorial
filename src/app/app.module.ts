@@ -15,9 +15,10 @@ import { AppRoutingModule } from './app-routing.module';
 import { AlertInvalidRecipeComponent } from './recipes/alert-invalid-recipe/alert-invalid-recipe.component';
 import { RecipeStartpageComponent } from './recipes/recipe-startpage/recipe-startpage.component';
 import { RecipeEditComponent } from './recipes/recipe-edit/recipe-edit.component';
-import { HttpClientModule } from '@angular/common/http';
+import { HTTP_INTERCEPTORS, HttpClientModule } from '@angular/common/http';
 import { recipeResolver } from './recipe-resolver.service';
 import { AuthenticationComponent } from './authentication/authentication.component';
+import { AuthInterceptorService } from './authentication/auth-interceptor.service';
 
 @NgModule({
   declarations: [
@@ -42,7 +43,8 @@ import { AuthenticationComponent } from './authentication/authentication.compone
     ReactiveFormsModule,
     HttpClientModule
   ],
-  providers: [{ provide: 'recipeResolver', useFactory: () => { return recipeResolver; } }],
+  providers: [{ provide: 'recipeResolver', useFactory: () => { return recipeResolver; } },
+  { provide: HTTP_INTERCEPTORS, useClass: AuthInterceptorService, multi: true },],
   bootstrap: [AppComponent]
 })
 export class AppModule { }

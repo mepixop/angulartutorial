@@ -48,6 +48,26 @@ export class AuthService {
     );
   }
 
+  logout() {
+    this.user.next(null)
+    localStorage.removeItem('userData')
+  }
+
+  autologin() {
+    const userData: { email: string, localId: string, _token: string, _tokenExpiration: string } = JSON.parse(localStorage.getItem('userData'))
+    if (!userData) {
+      return;
+    }
+    const loadedUser = new User(userData.email, userData.localId, userData._token, new Date(userData._tokenExpiration))
+
+    if (loadedUser.token) {
+      this.user.next(loadedUser)
+    }
+  }
+
+  autologout() {
+
+  }
 
   prepare(email: string, password: string): RequestPrepObject {
     const options = {
@@ -68,7 +88,9 @@ export class AuthService {
   handleAuthenticatedUser(data: SignupResponse) {
     const expiry = new Date(new Date().getTime() + parseInt(data.expiresIn) * 1000)
     const loggedInUser = new User(data.email, data.localId, data.idToken, expiry)
-    this.user.next(loggedInUser)
+    this.user.next(loggedInUser);
+    localStorage.setItem('userData', JSON.stringify(loggedInUser))
+
   }
 
   handleError(error: HttpErrorResponse) {

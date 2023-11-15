@@ -1,6 +1,6 @@
 import { Injectable } from "@angular/core";
 import { Recipe } from "./recipes/recipes.model";
-import { Observable, map } from "rxjs";
+import { map } from "rxjs";
 import { HttpClient } from "@angular/common/http"
 import { RecipeService } from "./recipe.service";
 
@@ -17,6 +17,7 @@ export class recipeFirebaseService {
 
   getRecipes() {
     const url: string = this.firebaseRoot + "recipes.json";
+
     return this.httpClient.get<{ [i: number]: Recipe }>(url).pipe(map(data => {
       const recipes: Recipe[] = []
       for (let i of Object.keys(data)) {

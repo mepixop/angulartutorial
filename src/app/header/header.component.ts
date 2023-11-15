@@ -19,6 +19,9 @@ export class HeaderComponent implements OnInit {
     })
   }
 
+  logout() {
+    this.authService.logout()
+  }
 
   loadRecipes() {
     this.recipeFirebaseService.getRecipes().subscribe();
