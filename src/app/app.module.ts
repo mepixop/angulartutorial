@@ -19,6 +19,7 @@ import { HTTP_INTERCEPTORS, HttpClientModule } from '@angular/common/http';
 import { recipeResolver } from './recipe-resolver.service';
 import { AuthenticationComponent } from './authentication/authentication.component';
 import { AuthInterceptorService } from './authentication/auth-interceptor.service';
+import { authGuard } from './authentication/auth-guard.service';
 
 @NgModule({
   declarations: [
@@ -43,8 +44,21 @@ import { AuthInterceptorService } from './authentication/auth-interceptor.servic
     ReactiveFormsModule,
     HttpClientModule
   ],
-  providers: [{ provide: 'recipeResolver', useFactory: () => { return recipeResolver; } },
-  { provide: HTTP_INTERCEPTORS, useClass: AuthInterceptorService, multi: true },],
+  providers: [
+    {
+      provide: 'recipeResolver',
+      useFactory: () => { return recipeResolver; }
+    },
+    {
+      provide: HTTP_INTERCEPTORS,
+      useClass: AuthInterceptorService,
+      multi: true
+    },
+    {
+      provide: 'authGuard',
+      useValue: authGuard
+    }
+  ],
   bootstrap: [AppComponent]
 })
 export class AppModule { }

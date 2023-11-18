@@ -2,6 +2,7 @@ import { HttpClient, HttpErrorResponse, HttpHeaders, HttpParams } from "@angular
 import { Injectable } from "@angular/core";
 import { BehaviorSubject, Observable, catchError, tap, throwError } from "rxjs";
 import { User } from "./authentication/user.model";
+import { Router } from "@angular/router";
 
 export interface SignupResponse {
   idToken: string,
@@ -31,7 +32,7 @@ export class AuthService {
   public user: BehaviorSubject<User> = new BehaviorSubject<User>(null);
   private tokenExpirationTimer: any;
 
-  constructor(private httpClient: HttpClient) { }
+  constructor(private httpClient: HttpClient, private router: Router) { }
 
   register(email: string, password: string): Observable<SignupResponse> {
     const request: RequestPrepObject = this.prepare(email, password);
@@ -50,12 +51,13 @@ export class AuthService {
   }
 
   logout() {
-    this.user.next(null)
-    localStorage.removeItem('userData')
+    this.user.next(null);
+    localStorage.removeItem('userData');
     if (this.tokenExpirationTimer) {
       clearTimeout(this.tokenExpirationTimer)
     }
     this.tokenExpirationTimer = null;
+    this.router.navigate(['/authentication']);
   }
 
   autologin() {

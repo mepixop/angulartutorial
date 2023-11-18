@@ -18,7 +18,7 @@ const appRoutes: Routes = [
       { path: 'invalid-id', component: AlertInvalidRecipeComponent },
       { path: ':id', component: RecipeDetailComponent, resolve: { recipes: 'recipeResolver' } },
       { path: ':id/edit', component: RecipeEditComponent, resolve: { recipes: 'recipeResolver' } }
-    ]
+    ], canActivate: ['authGuard']
   },
   { path: 'shoppingList', component: ShoppingListComponent },
   { path: 'authentication', component: AuthenticationComponent }
