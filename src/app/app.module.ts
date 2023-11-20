@@ -20,6 +20,7 @@ import { recipeResolver } from './recipe-resolver.service';
 import { AuthenticationComponent } from './authentication/authentication.component';
 import { AuthInterceptorService } from './authentication/auth-interceptor.service';
 import { authGuard } from './authentication/auth-guard.service';
+import { AlertPopupComponent } from './alert-popup/alert-popup.component';
 
 @NgModule({
   declarations: [
@@ -35,7 +36,8 @@ import { authGuard } from './authentication/auth-guard.service';
     AlertInvalidRecipeComponent,
     RecipeStartpageComponent,
     RecipeEditComponent,
-    AuthenticationComponent
+    AuthenticationComponent,
+    AlertPopupComponent
   ],
   imports: [
     BrowserModule,

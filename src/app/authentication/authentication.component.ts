@@ -47,4 +47,8 @@ export class AuthenticationComponent implements OnInit {
     })
   }
 
+  onHandleError() {
+    this.errorMsg = null;
+  }
+
 }
