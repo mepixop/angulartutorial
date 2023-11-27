@@ -4,7 +4,6 @@ import { ActivatedRoute, Params, Router } from '@angular/router';
 
 import { Recipe } from '../recipes.model';
 import { RecipeService } from 'src/app/recipe.service';
-import { AlertInvalidRecipeComponent } from '../alert-invalid-recipe/alert-invalid-recipe.component';
 
 @Component({
   selector: 'app-recipe-detail',
@@ -45,4 +44,5 @@ export class RecipeDetailComponent implements OnInit {
     this.recipeService.recipesChanged.next(this.recipeService.getRecipes());
     this.router.navigate(['../'], { relativeTo: this.route });
   }
+
 }

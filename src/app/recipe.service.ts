@@ -36,7 +36,7 @@ export class RecipeService {
   }
 
   getNewRecipeId() {
-    let max: number = this.recipes[0].id
+    let max: number = (this.recipes.length > 0) ? this.recipes[0].id : 1;
     this.recipes.map((item) => max = (item.id > max) ? item.id : max);
     return max + 1;
   }

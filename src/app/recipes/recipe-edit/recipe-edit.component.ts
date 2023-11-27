@@ -30,12 +30,13 @@ export class RecipeEditComponent implements OnInit, OnDestroy {
       this.editModeId = +params['id'];
       this.editMode = (params['id'] != null);
       this.initForm()
+      this.subscriptions.push(this.recipeEditForm.valueChanges.subscribe((value) => {
+        if (this.recipeEditForm.get('imagePath').value) {
+          this.recipe.imagePath = this.recipeEditForm.get('imagePath').value;
+        }
+      }))
     }));
-    this.subscriptions.push(this.recipeEditForm.valueChanges.subscribe((value) => {
-      if (this.recipeEditForm.get('imagePath').value) {
-        this.recipe.imagePath = this.recipeEditForm.get('imagePath').value;
-      }
-    }));
+    ;
   }
 
   ngOnDestroy(): void {

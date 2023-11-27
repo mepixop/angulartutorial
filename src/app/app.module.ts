@@ -1,10 +1,9 @@
 import { NgModule } from '@angular/core';
 import { BrowserModule } from '@angular/platform-browser';
-import { FormsModule, ReactiveFormsModule } from '@angular/forms';
+import { ReactiveFormsModule } from '@angular/forms';
 
 import { AppComponent } from './app.component';
 import { HeaderComponent } from './header/header.component';
-import { DropdownDirective } from './shared/dropdown.directive';
 import { AppRoutingModule } from './app-routing.module';
 import { AlertInvalidRecipeComponent } from './recipes/alert-invalid-recipe/alert-invalid-recipe.component';
 import { HTTP_INTERCEPTORS, HttpClientModule } from '@angular/common/http';
@@ -15,12 +14,12 @@ import { AlertPopupComponent } from './alert-popup/alert-popup.component';
 import { RecipesModule } from './recipes/recipes.module';
 import { ShoppingListModule } from './shopping-list/shopping-list.module';
 import { AuthModule } from './authentication/auth.module';
+import { SharedModule } from './shared/shared.module';
 
 @NgModule({
   declarations: [
     AppComponent,
     HeaderComponent,
-    DropdownDirective,
     AlertInvalidRecipeComponent,
     AlertPopupComponent,
   ],
@@ -32,6 +31,7 @@ import { AuthModule } from './authentication/auth.module';
     RecipesModule,
     ShoppingListModule,
     AuthModule,
+    SharedModule
   ],
   providers: [
     {
