@@ -9,12 +9,12 @@ import { AppRoutingModule } from './app-routing.module';
 import { AlertInvalidRecipeComponent } from './recipes/alert-invalid-recipe/alert-invalid-recipe.component';
 import { HTTP_INTERCEPTORS, HttpClientModule } from '@angular/common/http';
 import { recipeResolver } from './recipe-resolver.service';
-import { AuthenticationComponent } from './authentication/authentication.component';
 import { AuthInterceptorService } from './authentication/auth-interceptor.service';
 import { authGuard } from './authentication/auth-guard.service';
 import { AlertPopupComponent } from './alert-popup/alert-popup.component';
 import { RecipesModule } from './recipes/recipes.module';
 import { ShoppingListModule } from './shopping-list/shopping-list.module';
+import { AuthModule } from './authentication/auth.module';
 
 @NgModule({
   declarations: [
@@ -22,17 +22,16 @@ import { ShoppingListModule } from './shopping-list/shopping-list.module';
     HeaderComponent,
     DropdownDirective,
     AlertInvalidRecipeComponent,
-    AuthenticationComponent,
     AlertPopupComponent,
   ],
   imports: [
     BrowserModule,
     AppRoutingModule,
-    FormsModule,
     ReactiveFormsModule,
     HttpClientModule,
     RecipesModule,
     ShoppingListModule,
+    AuthModule,
   ],
   providers: [
     {
