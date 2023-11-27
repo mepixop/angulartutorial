@@ -2,6 +2,7 @@ import { Component, OnInit } from '@angular/core';
 import { FormControl, FormGroup, Validators } from '@angular/forms';
 import { AuthService, SignupResponse } from '../auth-firebase-connector.service';
 import { Router } from '@angular/router';
+import { OnDestroy } from '@angular/core';
 
 @Component({
   selector: 'app-authentication',
@@ -50,5 +51,6 @@ export class AuthenticationComponent implements OnInit {
   onHandleError() {
     this.errorMsg = null;
   }
+
 
 }
